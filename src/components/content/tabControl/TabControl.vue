@@ -12,7 +12,7 @@
 <script>
 	export default {
 		name: "TabControl",
-    props: {
+    props: {// 父传子titles
       titles: {
         type: Array,
         default() {
@@ -20,13 +20,13 @@
         }
       }
     },
-    data: function () {
+    data() {
       return {
-        currentIndex: 0
+        currentIndex: 0 //记录当前tabbar是否被选中
       }
     },
     methods: {
-      itemClick: function (index) {
+      itemClick: function (index) { //点击传入tabbar的index
         // 1.改变currentIndex
         this.currentIndex = index;
 
@@ -55,6 +55,7 @@
     padding: 5px;
   }
 
+  /*被激活的tabbar颜色*/
   .active {
     color: var(--color-high-text);
   }

@@ -1,9 +1,9 @@
 <template>
   <div class="feature">
-    <div class="feature-item" v-for="(item, index) in features">
+    <div class="feature-item" v-for="(item, index) in features" :key="item">
       <a :href="item.link">
         <img :src="item.image" alt="">
-        <div>{{item.title}}</div>
+        <div>{{index + item.title}}</div>
       </a>
     </div>
   </div>
@@ -12,10 +12,12 @@
 <script>
 	export default {
 		name: "FeatureView",
-    props: {
-		  features: {
-		    type: Array,
-        default: []
+    props: {//父子传值
+      features: {
+        type: Array,
+        default() {
+          return []
+        }
       }
     }
 	}
@@ -31,7 +33,7 @@
   }
 
   .feature-item {
-    flex: 1;
+    flex: 1;/*均等分*/
     text-align: center;
   }
 

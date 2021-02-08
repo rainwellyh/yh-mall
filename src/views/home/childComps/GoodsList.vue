@@ -17,7 +17,9 @@
     props: {
       goodsList: {
         type: Array,
-        default: []
+        default() {
+          return []
+        }
       }
     },
   }

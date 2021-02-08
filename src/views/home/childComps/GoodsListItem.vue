@@ -13,13 +13,15 @@
 	export default {
 		name: "GoodsListItem",
     props: {
-		  goods: {
-		    type: Object,
-        default: {}
+      goods: {
+        type: Object,
+        default() {
+          return []
+        }
       }
     },
     mounted: function () {
-      // console.log(this.goods);
+      console.log(this.goods);
     },
     methods: {
       goToDetail: function () {

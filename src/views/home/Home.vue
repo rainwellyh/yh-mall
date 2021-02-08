@@ -1,8 +1,10 @@
 <template>
   <div id="home">
     <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
-    <tab-control v-show="isTabFixed" class="fixed" @itemClick="tabClick"
-                :titles="['流行', '新款', '精选']"></tab-control>
+    <tab-control v-show="isTabFixed" class="fixed"
+                @itemClick="tabClick"
+                :titles="['流行', '新款', '精选']">
+    </tab-control>
     <scroll class="content"
             ref="scroll"
             @scroll="contentScroll"
@@ -19,6 +21,13 @@
                     :titles="['流行', '新款', '精选']"
                     ref="tabControl"></tab-control>
         <goods-list :goods-list="showGoodsList"></goods-list>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
       </div>
     </scroll>
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
@@ -32,9 +41,11 @@
   import Scroll from 'common/scroll/Scroll'
   import TabControl from 'content/tabControl/TabControl'
   import BackTop from 'content/backTop/BackTop'
-  import HomeSwiper from './childComps/HomeSwiper'
+  import HomeSwiper from './childComps/HomeSwiper'//轮播图子组件
+
   import FeatureView from './childComps/FeatureView'
-  import RecommendView from './childComps/RecommendView'
+  import RecommendView from './childComps/RecommendView'//推荐页面子组件
+
   import GoodsList from './childComps/GoodsList'
   // 没有使用default导出，才需要用大括号import home.js
   import {getHomeMultidata, getHomeData, RECOMMEND, BANNER} from "network/home";

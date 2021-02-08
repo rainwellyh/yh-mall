@@ -14,21 +14,23 @@
 	export default {
 		name: "HomeSwiper",
     components: {
-		  Swiper,
+      Swiper,
       SwiperItem
     },
     props: {
-		  banners: {
-		    type: Array,
-        default: []
+      banners: { //父子组件传值
+        type: Array,
+        default() {
+          return []
+        }
       }
     },
     methods: {
-		  stopTimer() {
-		    this.$refs.swiper.stopTimer()
+      stopTimer() {
+        this.$refs.swiper.stopTimer()
       },
       startTimer() {
-		    if (this.$refs.swiper) {
+        if (this.$refs.swiper) {
           this.$refs.swiper.startTimer()
         }
       }

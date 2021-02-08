@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { //配置简写别名
   configureWebpack: {
     resolve: {
       alias: {

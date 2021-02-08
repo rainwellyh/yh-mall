@@ -2,7 +2,7 @@
   <div id="home">
     <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
     <tab-control v-show="isTabFixed" class="fixed" @itemClick="tabClick"
-                 :titles="['流行', '新款', '精选']"></tab-control>
+                :titles="['流行', '新款', '精选']"></tab-control>
     <scroll class="content"
             ref="scroll"
             @scroll="contentScroll"
@@ -12,12 +12,12 @@
             :probe-type="3">
       <div>
         <home-swiper :banners="banners"
-                     ref="hSwiper"></home-swiper>
+                    ref="hSwiper"></home-swiper>
         <feature-view :features="recommends"></feature-view>
         <recommend-view></recommend-view>
         <tab-control @itemClick="tabClick"
-                     :titles="['流行', '新款', '精选']"
-                     ref="tabControl"></tab-control>
+                    :titles="['流行', '新款', '精选']"
+                    ref="tabControl"></tab-control>
         <goods-list :goods-list="showGoodsList"></goods-list>
       </div>
     </scroll>
@@ -36,13 +36,14 @@
   import FeatureView from './childComps/FeatureView'
   import RecommendView from './childComps/RecommendView'
   import GoodsList from './childComps/GoodsList'
+  // 没有使用default导出，才需要用大括号import home.js
   import {getHomeMultidata, getHomeData, RECOMMEND, BANNER} from "network/home";
   import {NEW, POP, SELL, BACKTOP_DISTANCE} from "@/common/const";
 
   export default {
 		name: "Home",
     components: {
-		  NavBar,
+      NavBar,
       Scroll,
       TabControl,
       BackTop,
@@ -52,8 +53,8 @@
       GoodsList,
     },
     data() {
-		  return {
-		    banners: [],
+      return { //此处定义变量接受下方getMultiData()保存的结果
+        banners: [],
         recommends: [],
         goodsList: {
           'pop': {page: 1, list: []},
@@ -67,13 +68,13 @@
       }
     },
     computed: {
-		  showGoodsList() {
-		    return this.goodsList[this.currentType].list
+      showGoodsList() {
+        return this.goodsList[this.currentType].list
       }
     },
     created() {
-      console.log('创建Home');
-      // 1.请求多个数据
+      console.log('创建Home，组件创建好了之后发送网络请求');
+      // 1.请求多个数据，调用下面的methods中的getMultiData() 方法
       this.getMultiData()
 
       // 2.请求商品数据
@@ -92,8 +93,8 @@
       // console.log(this.tabOffsetTop);
     },
     methods: {
-		  tabClick(index) {
-		    switch (index) {
+      tabClick(index) {
+        switch (index) {
           case 0:
             this.currentType = POP
             break
@@ -106,14 +107,14 @@
         }
       },
       contentScroll(position) {
-		    // 1.决定tabFixed是否显示
+        // 1.决定tabFixed是否显示
         this.isTabFixed = position.y < -this.tabOffsetTop
 
         // 2.决定backTop是否显示
         this.showBackTop = position.y < -BACKTOP_DISTANCE
       },
       loadMore() {
-		    this.getHomeProducts(this.currentType)
+        this.getHomeProducts(this.currentType)
       },
       backTop() {
         this.$refs.scroll.scrollTo(0, 0, 300)
@@ -123,6 +124,7 @@
        */
       getMultiData() {
         getHomeMultidata().then(res => {
+          console.log(res); //res是函数内的结果，调用完了后会消失，要及时保存，如下
           this.banners = res.data[BANNER].list
           this.recommends = res.data[RECOMMEND].list
           // 下次更新DOM时,获取新的tabOffsetTop值(不保险,可以在updated钩子中获取)

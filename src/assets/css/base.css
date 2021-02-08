@@ -1,6 +1,7 @@
 @import "./normalize.css";
 
 :root {
+  /*定义基础颜色变量，background-color: var(--color-tint);*/
   --color-text: #666;
   --color-high-text: #ff5777;
   --color-tint: #ff8198;

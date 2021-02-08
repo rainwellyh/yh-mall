@@ -17,10 +17,10 @@
     position: relative;
     z-index: 10;
 
-    display: flex;
+    display: flex;/* flex布局 */
 
     height: 44px;
-    line-height: 44px;
+    line-height: 44px;/* 一般导航栏都是44px */
     text-align: center;
 
     /*border-bottom: 1px solid #eee;*/
@@ -32,7 +32,7 @@
   }
 
   .nav-center {
-    flex: 1;
+    flex: 1;/*占据剩余中间空余 */
   }
 
   .nav-right {

@@ -1,6 +1,7 @@
 import originAxios from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 
+// 整体的网络请求
 export default function axios(option) {
 	return new Promise((resolve, reject) => {
 		// 1.创建axios的实例

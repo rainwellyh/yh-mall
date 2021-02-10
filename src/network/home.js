@@ -13,7 +13,7 @@ export function getHomeMultidata() {
 export function getHomeData(type, page) {
   return axios({
     url: '/home/data',
-    params: {
+    params: {//?type=new&page=1
       type,
       page
     }

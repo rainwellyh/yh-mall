@@ -21,13 +21,6 @@
                     :titles="['流行', '新款', '精选']"
                     ref="tabControl"></tab-control>
         <goods-list :goods-list="showGoodsList"></goods-list>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-        </ul>
       </div>
     </scroll>
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
@@ -47,6 +40,7 @@
   import RecommendView from './childComps/RecommendView'//推荐页面子组件
 
   import GoodsList from './childComps/GoodsList'
+
   // 没有使用default导出，才需要用大括号import home.js
   import {getHomeMultidata, getHomeData, RECOMMEND, BANNER} from "network/home";
   import {NEW, POP, SELL, BACKTOP_DISTANCE} from "@/common/const";
@@ -67,7 +61,7 @@
       return { //此处定义变量接受下方getMultiData()保存的结果
         banners: [],
         recommends: [],
-        goodsList: {
+        goodsList: {//一次请求三种第一页的数据存数据,下面会用到this.goodList
           'pop': {page: 1, list: []},
           'new': {page: 1, list: []},
           'sell': {page: 1, list: []}
@@ -88,7 +82,7 @@
       // 1.请求多个数据，调用下面的methods中的getMultiData() 方法
       this.getMultiData()
 
-      // 2.请求商品数据
+      // 2.请求商品数据-三个页面的
       this.getHomeProducts(POP)
       this.getHomeProducts(NEW)
       this.getHomeProducts(SELL)
@@ -144,9 +138,12 @@
           })
         })
       },
-      getHomeProducts(type) {
+      getHomeProducts(type) { //获取首页商品数据
+        //getHomeData(type, page)是home.js中定义的函数，上面已经导入
         getHomeData(type, this.goodsList[type].page).then(res => {
+          console.log(res); //res是函数内的结果，调用完了后会消失，要及时保存，如下
           const goodsList = res.data.list;
+          //... 扩展运算符能将数组转换为逗号分隔的参数序列，push是链式调用
           this.goodsList[type].list.push(...goodsList)
           this.goodsList[type].page += 1
 

@@ -8,35 +8,35 @@
 	export default {
 		name: "GridView",
     props: {
-		  cols: {
-		    type: Number,
+      cols: {
+        type: Number,
         default: 2
       },
       hMargin: {
-		    type: Number,
+        type: Number,
         default: 8
       },
       vMargin: {
-		    type: Number,
+        type: Number,
         default: 8
       },
       itemSpace: {
-		    type: Number,
+        type: Number,
         default: 8
       },
       lineSpace: {
-		    type: Number,
+        type: Number,
         default: 8
       }
     },
     mounted: function () {
-		  setTimeout(this._autoLayout, 20)
+      setTimeout(this._autoLayout, 20)
     },
     updated: function () {
       this._autoLayout()
     },
     methods: {
-		  _autoLayout: function () {
+      _autoLayout: function () {
         // 1.获取gridEl和children
         // 注: 这里为什么不用document.querySelector呢?
         // 答: 因为如果在项目中, 多处都用到了grid-view, 那么这里就不确定获取的是哪一个了.

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import GridView from 'common/gridView/GridView'
+  import GridView from 'common/gridView/GridView'//导入图片栅格组件，控制图片样式
   import GoodsListItem from './GoodsListItem'
 
   export default {

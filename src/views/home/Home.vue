@@ -72,7 +72,7 @@
         showBackTop: false
       }
     },
-    computed: {
+    computed: { //使用计算属性
       showGoodsList() {
         return this.goodsList[this.currentType].list
       }

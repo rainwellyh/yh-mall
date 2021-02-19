@@ -3,8 +3,8 @@
     <img v-lazy="getImg" :key="getImg" alt="">
     <div class="goods-info">
       <p>{{goods.title}}</p>
-      <span class="price">¥{{goods.price}}</span>
-      <span class="collect">{{goods.cfav}}</span>
+      <span class="price">¥{{goods.price}}</span><!--价格值-->
+      <span class="collect">{{goods.cfav}}</span><!--收藏值-->
     </div>
   </div>
 </template>

@@ -13,13 +13,13 @@
             :pull-up-load="true"
             :probe-type="3">
       <div>
-        <home-swiper :banners="banners"
-                    ref="hSwiper"></home-swiper>
+        <home-swiper :banners="banners" ref="hSwiper"></home-swiper>
         <feature-view :features="recommends"></feature-view>
         <recommend-view></recommend-view>
         <tab-control @itemClick="tabClick"
                     :titles="['流行', '新款', '精选']"
-                    ref="tabControl"></tab-control>
+                    ref="tabControl">
+        </tab-control>
         <goods-list :goods-list="showGoodsList"></goods-list>
       </div>
     </scroll>
@@ -66,13 +66,13 @@
           'new': {page: 1, list: []},
           'sell': {page: 1, list: []}
         },
-        currentType: POP,
+        currentType: POP, //设置当前默认类型，由下面的tabClick(index)事件更改
         isTabFixed: false,
         tabOffsetTop: 0,
         showBackTop: false
       }
     },
-    computed: { //使用计算属性
+    computed: { //使用计算属性showGoodsList返回给goods-list组件数据
       showGoodsList() {
         return this.goodsList[this.currentType].list
       }
@@ -98,7 +98,10 @@
       // console.log(this.tabOffsetTop);
     },
     methods: {
-      tabClick(index) {
+      /**
+       * 事件监听相关的方法
+       */
+      tabClick(index) { //由子组件TabControl.vue发出的itemClick事件，触发tabClick事件(并接收传来的index)
         switch (index) {
           case 0:
             this.currentType = POP
@@ -124,6 +127,7 @@
       backTop() {
         this.$refs.scroll.scrollTo(0, 0, 300)
       },
+
       /**
        * 网络请求相关方法
        */
@@ -156,8 +160,8 @@
 
 <style scoped>
   #home {
-    /*position: relative;*/
-    height: 100vh;
+    position: relative;
+    height: 100vh; /* vh: 相对于视窗的高度, 视窗被均分为100单位的vh;  */
   }
 
   .nav-bar {

@@ -30,7 +30,7 @@
         // 1.改变currentIndex
         this.currentIndex = index;
 
-        // 2.发出事件
+        // 2.子传父-发出事件itemClick给home.vue，并传出下标志
         this.$emit('itemClick', index)
       }
     }
@@ -44,6 +44,11 @@
     line-height: 40px;
     font-size: 15px;
     background-color: #fff;
+
+    border-top: 1px solid hotpink;
+
+    position: sticky;  /*让滚动后的小导航条固定在顶部*/
+    top: 0px;
     z-index: 9;
   }
 

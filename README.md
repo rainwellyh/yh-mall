@@ -26,7 +26,8 @@ npm run lint
 
 ## 项目预览
 
-![首页注释](public\yh-mall-img\yh-mall_nav.png)
+![首页注释](public/yh-mall-img/yh-mall_nav.png)
+![导航注释](public/yh-mall-img/yh-mall_nav1.png)
 
 ### Customize configuration
 

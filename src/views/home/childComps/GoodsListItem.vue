@@ -21,7 +21,7 @@
       }
     },
     mounted: function () {
-      console.log(this.goods);
+      //console.log(this.goods);
     },
     methods: {
       goToDetail: function () {

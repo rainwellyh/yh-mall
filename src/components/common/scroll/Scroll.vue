@@ -10,33 +10,34 @@
 	export default {
 		name: "Scroll",
     props: {
-		  probeType: {
-		    type: Number,
+      probeType: {
+        type: Number,
         default: 1
       },
       data: {
-		    type: Array,
+        type: Array,
         default: () => {
           return []
         }
       },
       pullUpLoad: {
-		    type: Boolean,
+        type: Boolean,
         default: false
       }
     },
     data() {
-		  return {
-		    scroll: {}
+      return {
+        scroll: {}, //this.$refs.scroll访问的组件对象
+        message: '哈哈哈'
       }
     },
-    mounted() {
-		  setTimeout(this.__initScroll, 20)
+    mounted() { //挂载后执行方法（注意不是创建后！）
+      setTimeout(this.__initScroll, 20)
     },
     methods: {
-		  __initScroll() {
-		    // 1.初始化BScroll对象
-		    if (!this.$refs.wrapper) return
+      __initScroll() {
+        // 1.初始化BScroll对象
+        if (!this.$refs.wrapper) return
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
           click: true,
@@ -58,14 +59,15 @@
         this.scroll && this.scroll.refresh && this.scroll.refresh()
       },
       finishPullUp() {
-		    this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()
+        this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()
       },
-      scrollTo(x, y, time) {
-		    this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x, y, time)
+      scrollTo(x, y, time=300) {
+        //this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x, y, time)
+        this.scroll.scrollTo(x, y, time)
       }
     },
     watch: {
-		  data() {
+      data() {
         setTimeout(this.refresh, 20)
       }
     }

@@ -13,9 +13,12 @@
             :pull-up-load="true"
             :probe-type="3">
       <div>
+        <!-- ref="hSwiper"给轮播图组件注册引用信息 -->
         <home-swiper :banners="banners" ref="hSwiper"></home-swiper>
+
         <feature-view :features="recommends"></feature-view>
         <recommend-view></recommend-view>
+
         <tab-control @itemClick="tabClick"
                     :titles="['流行', '新款', '精选']"
                     ref="tabControl">
@@ -23,8 +26,9 @@
         <goods-list :goods-list="showGoodsList"></goods-list>
       </div>
     </scroll>
+
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
-      <img src="~assets/img/common/top.png" alt="">
+      <img src="~assets/img/common/top.png" alt="返回顶部">
     </back-top>
   </div>
 </template>
@@ -33,7 +37,7 @@
   import NavBar from 'common/navbar/NavBar'
   import Scroll from 'common/scroll/Scroll'
   import TabControl from 'content/tabControl/TabControl'
-  import BackTop from 'content/backTop/BackTop'
+  import BackTop from 'content/backTop/BackTop' //返回的顶部
   import HomeSwiper from './childComps/HomeSwiper'//轮播图子组件
 
   import FeatureView from './childComps/FeatureView'
@@ -69,7 +73,7 @@
         currentType: POP, //设置当前默认类型，由下面的tabClick(index)事件更改
         isTabFixed: false,
         tabOffsetTop: 0,
-        showBackTop: false
+        showBackTop: false //反对顶部默认不显示
       }
     },
     computed: { //使用计算属性showGoodsList返回给goods-list组件数据
@@ -118,14 +122,17 @@
         // 1.决定tabFixed是否显示
         this.isTabFixed = position.y < -this.tabOffsetTop
 
-        // 2.决定backTop是否显示
+        // 2.决定backTop返回顶部是否显示
         this.showBackTop = position.y < -BACKTOP_DISTANCE
       },
       loadMore() {
         this.getHomeProducts(this.currentType)
       },
-      backTop() {
+      backTop() { //法一：由子组件BackTop.vue的topClick方法emit传过来的backTop方法,触发上方组件的@backTop="backTop"，再才调用此方法backTop()
+      //法二：<back-top @click.native="backTop" class="back-top" v-show="showBackTop">可以监听这个组件的点击(组件不能直接监听点击，需要使用@click.native)
+      //上方scroll组件使用了ref="scroll"所以可以使用this.$refs.scroll拿到这个组件对象
         this.$refs.scroll.scrollTo(0, 0, 300)
+        console.log(this.$refs.scroll.message) //此处能打印出哈哈哈
       },
 
       /**

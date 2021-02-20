@@ -1,6 +1,6 @@
 <template>
   <div class="feature">
-    <div class="feature-item" v-for="(item, index) in features" :key="item">
+    <div class="feature-item" v-for="(item, index) in features" :key="index">
       <a :href="item.link">
         <img :src="item.image" alt="">
         <div>{{index + item.title}}</div>

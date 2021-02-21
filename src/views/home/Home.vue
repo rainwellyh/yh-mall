@@ -125,8 +125,11 @@
         // 2.决定backTop返回顶部是否显示
         this.showBackTop = position.y < -BACKTOP_DISTANCE
       },
-      loadMore() {
+      loadMore() { //监听上拉加载更多，根据对应的类型来加载
         this.getHomeProducts(this.currentType)
+
+        //解决图片异步加载导致无法加载合适得滚动高度问题，重新计算带图片的滚动区域大小
+        this.$refs.scroll.refresh()
       },
       backTop() { //法一：由子组件BackTop.vue的topClick方法emit传过来的backTop方法,触发上方组件的@backTop="backTop"，再才调用此方法backTop()
       //法二：<back-top @click.native="backTop" class="back-top" v-show="showBackTop">可以监听这个组件的点击(组件不能直接监听点击，需要使用@click.native)
@@ -156,9 +159,9 @@
           const goodsList = res.data.list;
           //... 扩展运算符能将数组转换为逗号分隔的参数序列，push是链式调用
           this.goodsList[type].list.push(...goodsList)
-          this.goodsList[type].page += 1
+          this.goodsList[type].page += 1 //页码加一
 
-          this.$refs.scroll.finishPullUp()
+          this.$refs.scroll.finishPullUp() //上拉完成后需要调用此方法才可以进行下一次上拉
         })
       }
     }

@@ -1,20 +1,20 @@
 # yh-mall 一个典型移动端vue商城项目
 
-## 项目思路
+## 1.项目思路
 
-[](https://blog.moonlet.cn/archives/625)
+项目思路见我的博客-[项目思路-余浩的博客](https://blog.moonlet.cn/archives/625)
 
-## 项目预览
+## 2.项目预览
 
-### 商城首页组件
+### 2.1 商城首页组件
 
 ![首页注释](public/yh-mall-img/yh-mall_nav.png)
 
-### 选项卡
+### 2.2 选项卡
 
 ![导航注释](public/yh-mall-img/yh-mall_nav1.png)
 
-## 项目起步
+## 3.项目起步
 
 ```javscript
 npm install

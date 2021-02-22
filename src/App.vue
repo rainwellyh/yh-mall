@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <keep-alive exclude="Detail">
-      <router-view></router-view>
+      <router-view></router-view> <!--路由出口，路由匹配到的组件将渲染在这里-->
     </keep-alive>
-    <main-tab-bar></main-tab-bar>
+
+    <main-tab-bar></main-tab-bar> <!--主导航栏MainTabBar.vue组件，含有路由(由main.js挂载)-->
+
     <icon></icon>
     <svg-icon></svg-icon>
+
   </div>
 </template>
 

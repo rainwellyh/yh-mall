@@ -72,7 +72,7 @@
         },
         currentType: POP, //设置当前默认类型，由下面的tabClick(index)事件更改
         isTabFixed: false,
-        tabOffsetTop: 0,
+        tabOffsetTop: 0,  //tabbbar吸顶
         showBackTop: false //反对顶部默认不显示
       }
     },

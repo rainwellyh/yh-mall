@@ -14,5 +14,5 @@ Vue.use(VueLazyLoad, {
 new Vue({
   render: h => h(App),
   store,
-  router
+  router //挂载路由
 }).$mount('#app')

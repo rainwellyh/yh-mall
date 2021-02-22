@@ -1,3 +1,4 @@
+<!--下方的主导航条，与home组件平级-->
 <template>
   <tab-bar>
     <tab-bar-item link="/home">

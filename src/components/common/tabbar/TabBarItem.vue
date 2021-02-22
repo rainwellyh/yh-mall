@@ -25,6 +25,8 @@
     },
     methods: {
 			itemClick() {
+        //MainTabBar.vue中使用link="/home"属性，这里使用方法将属性加到路由中再匹配路由
+        //因此没有使用router-link
 				this.$router.replace(this.link)
       }
     }
